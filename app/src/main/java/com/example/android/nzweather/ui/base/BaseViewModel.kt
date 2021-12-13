@@ -1,4 +1,4 @@
-package com.example.android.nzweather.ui
+package com.example.android.nzweather.ui.base
 
 import androidx.lifecycle.ViewModel
 
