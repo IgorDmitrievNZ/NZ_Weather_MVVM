@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.android.nzweather.AppState
 import com.example.android.nzweather.R
 import com.example.android.nzweather.databinding.FragmentHomeBinding
@@ -68,10 +69,10 @@ class HomeFragment : Fragment() {
                             val bundle = Bundle().apply {
                                 putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
                             }
-                            manager.beginTransaction()
-                                .replace(R.id.container, DetailsFragment.newInstance(bundle))
-                                .addToBackStack("")
-                                .commit()
+                            findNavController().navigate(
+                                R.id.action_homeFragment_to_detailsFragment,  //navigation
+                                bundle
+                            )
                         }
                     }
                 }).apply {
@@ -97,9 +98,5 @@ class HomeFragment : Fragment() {
 
     interface OnItemViewClickListener {
         fun onItemViewClick(weather: Weather)
-    }
-
-    companion object {
-        fun newInstance() = HomeFragment()
     }
 }
